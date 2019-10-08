@@ -16,7 +16,8 @@ window.addEventListener('load', () => {
 
       // Proxy is needed, because for some reason daksky API won't allow localhosting
       const proxy = 'https://cors-anywhere.herokuapp.com/';
-      const api = `${proxy}https://api.darksky.net/forecast/d1926605e2929808d5389bcf0cbaa698/${lat},${long}`;
+      const api = `${proxy}https://api.darksky.net/forecast/INSERT_YOUR_OWN_API_KEY_HERE/${lat},${long}`;
+      const api_url_location =`https://maps.googleapis.com/maps/api/geocode/json?address=${lat},${long}&key=INSERT_YOUR_OWN_API_KEY_HERE`;
 
       fetch(api)
         .then(response => {
@@ -39,6 +40,26 @@ window.addEventListener('load', () => {
           // Set animated icon
           setIcons(icon, document.querySelector('.icon'));
         });
+
+      // Set location into HTML
+      async function getLocation() {
+        // URL where the data comes from
+
+
+        // Fetch the data
+        const response2 = await fetch(api_url_location);
+
+        // Convert data into JSON
+        const data2 = await response2.json();
+
+        console.log(data2);
+
+        // Insert data into HTML
+        document.querySelector('.city').textContent =
+          data2.results[0].formatted_address;
+      }
+
+      getLocation();
     });
 
     function setIcons(icon, iconID) {
