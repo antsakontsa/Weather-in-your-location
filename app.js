@@ -14,10 +14,10 @@ window.addEventListener('load', () => {
       lat = position.coords.latitude;
       long = position.coords.longitude;
 
-      // Proxy is needed, because for some reason daksky API won't allow localhosting
+      // Proxy is needed, because for some reason darksky API won't allow localhosting
       const proxy = 'https://cors-anywhere.herokuapp.com/';
-      const api = `${proxy}https://api.darksky.net/forecast/d1926605e2929808d5389bcf0cbaa698/${lat},${long}`;
-      const api_url_location = `https://maps.googleapis.com/maps/api/geocode/json?address=${lat},${long}&key=AIzaSyBS8Z-8AK_LrD_4VR-G5OecJgwv1G3CPhg`;
+      const api = `${proxy}https://api.darksky.net/forecast/RUBBERIZE_THIS_TEXT_AND_INSERT_YOUR_API_KEY_HERE/${lat},${long}`; // https://darksky.net/dev/register sign up here and get your free API key
+      const api_url_location = `https://maps.googleapis.com/maps/api/geocode/json?address=${lat},${long}&key=RUBBERIZE_THIS_TEXT_AND_INSERT_YOUR_API_KEY_HERE`; // https://console.developers.google.com/apis/credentials/ and create your javascript API key
 
       fetch(api)
         .then(response => {
@@ -37,7 +37,7 @@ window.addEventListener('load', () => {
           let celsius = Math.floor((temperature - 32) * (5 / 9));
           temperatureDegree.textContent = celsius + ' C';
 
-          // Background colors for different degreeses
+          // Background colors for different degrees
           if (celsius >= 20) {
             document.body.style.backgroundColor = '#f03224';
           } else if (celsius >= 15 && celsius < 20) {
