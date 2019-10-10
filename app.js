@@ -16,8 +16,8 @@ window.addEventListener('load', () => {
 
       // Proxy is needed, because for some reason daksky API won't allow localhosting
       const proxy = 'https://cors-anywhere.herokuapp.com/';
-      const api = `${proxy}https://api.darksky.net/forecast/d1926605e2929808d5389bcf0cbaa698/${lat},${long}`;
-      const api_url_location = `https://maps.googleapis.com/maps/api/geocode/json?address=${lat},${long}&key=AIzaSyBS8Z-8AK_LrD_4VR-G5OecJgwv1G3CPhg`;
+      const api = `${proxy}https://api.darksky.net/forecast/YOUR_API_KEY_HERE/${lat},${long}`;
+      const api_url_location = `https://maps.googleapis.com/maps/api/geocode/json?address=${lat},${long}&key=YOUR_API_KEY_HERE`;
 
       fetch(api)
         .then(response => {
