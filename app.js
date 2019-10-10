@@ -16,8 +16,8 @@ window.addEventListener('load', () => {
 
       // Proxy is needed, because for some reason daksky API won't allow localhosting
       const proxy = 'https://cors-anywhere.herokuapp.com/';
-      const api = `${proxy}https://api.darksky.net/forecast/INSERT_YOUR_OWN_API_KEY_HERE/${lat},${long}`;
-      const api_url_location =`https://maps.googleapis.com/maps/api/geocode/json?address=${lat},${long}&key=INSERT_YOUR_OWN_API_KEY_HERE`;
+      const api = `${proxy}https://api.darksky.net/forecast/d1926605e2929808d5389bcf0cbaa698/${lat},${long}`;
+      const api_url_location = `https://maps.googleapis.com/maps/api/geocode/json?address=${lat},${long}&key=AIzaSyBS8Z-8AK_LrD_4VR-G5OecJgwv1G3CPhg`;
 
       fetch(api)
         .then(response => {
@@ -34,8 +34,19 @@ window.addEventListener('load', () => {
           locationTimezone.textContent = data.timezone;
 
           // Count Celsius from Fahrenheit
-          let celsius = (temperature - 32) * (5 / 9);
-          temperatureDegree.textContent = Math.floor(celsius);
+          let celsius = Math.floor((temperature - 32) * (5 / 9));
+          temperatureDegree.textContent = celsius + ' C';
+          if (Math.floor(celsius) >= 20) {
+            document.body.style.backgroundColor = '#f03224';
+          } else if (Math.floor(celsius) >= 15 && Math.floor(celsius) < 20) {
+            document.body.style.backgroundColor = '#ff6100';
+          } else if (Math.floor(celsius) >= 10 && Math.floor(celsius) < 15) {
+            document.body.style.backgroundColor = '#b54e1f';
+          } else if (Math.floor(celsius) > 0 && Math.floor(celsius) < 10) {
+            document.body.style.backgroundColor = '#2f96a3';
+          } else if (Math.floor(celsius) <= 0) {
+            document.body.style.backgroundColor = '#257099';
+          }
 
           // Set animated icon
           setIcons(icon, document.querySelector('.icon'));
@@ -43,9 +54,6 @@ window.addEventListener('load', () => {
 
       // Set location into HTML
       async function getLocation() {
-        // URL where the data comes from
-
-
         // Fetch the data
         const response2 = await fetch(api_url_location);
 
