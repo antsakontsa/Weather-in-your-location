@@ -16,7 +16,7 @@ window.addEventListener('load', () => {
 
       // Proxy is needed, because for some reason darksky API won't allow localhosting
       const proxy = 'https://cors-anywhere.herokuapp.com/';
-      const api = `${proxy}https://api.darksky.net/YOUR_API_KEY_HERE/${lat},${long}`; // https://darksky.net/dev/register sign up here and get your free API key
+      const api = `${proxy}https://api.darksky.net/forecast/YOUR_API_KEY_HERE/${lat},${long}`; // https://darksky.net/dev/register sign up here and get your free API key
       const api_url_location = `https://maps.googleapis.com/maps/api/geocode/json?address=${lat},${long}&key=YOUR_API_KEY_HERE`; // https://console.developers.google.com/apis/credentials/ and create your javascript API key
 
       fetch(api)
